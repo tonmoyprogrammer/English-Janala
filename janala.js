@@ -5,30 +5,29 @@ function learnLesson()
     fetch(url)
     .then(res => res.json())
     .then(data => getLesson (data.data));
+
 }
 
-    
-
-const removeActive = ()=>
+const removeActive =()=>
 {
-    const  activeData = document.querySelectorAll(".lesson-btn");
-    activeData.forEach(data => data.classList.remove("active"));
+ const nodeList = document.querySelectorAll(".lesson-btn");
+ nodeList.forEach(btn =>btn.classList.remove("active"))
 }
+
 function buttonClick(id)
 {
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
     .then(res => res.json())
-    .then((data)=>
-    {
+    .then(data =>{
         removeActive();
-        const lessonClick = document.getElementById(`lesson-bt-${id}`);
-        lessonClick.classList.add("active");
-        getWord(data);
-    })
+        const uniqueId = document.getElementById(`lesson-btn-${id}`)
+        uniqueId.classList.add("active");
+        console.log(uniqueId);
+        getWord(data.data);
+    });
+       
 }
-
-
 
 const getWord = (word)=>
 {
@@ -55,13 +54,11 @@ const getWord = (word)=>
                          <h2 class="font-bold text-2xl">${element.word ? element.word : "কোনো শব্দ যুক্ত করা হয়নি"}</h2>
             <p class="my-3">Meaning /Pronounciation</p>
             <h2 class="fon-bangla font-semibold text-2xl text-gray-700">
-            ${element.meaning ? element.meaning : "কোনো শব্দ যুক্ত করা হয়নি"} /${element.pronunciation ?
-                 element.pronunciation : "কোনো  Pronunciation যুক্ত করা হয়নি"}</h2>
+            ${element.meaning ? element.meaning : "কোনো শব্দ যুক্ত করা হয়নি"} /${element.pronunciation ? element.pronunciation : "কোনো  Pronunciation যুক্ত করা হয়নি"}</h2>
 
             <div class="flex justify-between m-5">
-                <buttion class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-circle-info"></i></buttion>
-                <buttion class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></buttion>
-
+                <buttion onclick="my_modal_5.showModal()" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80] "><i class="fa-solid fa-circle-info"></i></buttion>
+                <buttion  class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></buttion>
             </div>
             </div>
 
@@ -84,7 +81,7 @@ const getLesson = (lesson)=>
         const newElement = document.createElement("div");
         newElement.innerHTML=
         `
-        <button id= 'lesson-btn-${leson.level_no}' onclick = "buttonClick(${leson.level_no})" class="btn btn-outline btn-primary lesson-btn">
+        <button id="lesson-btn-${leson.level_no}" onclick = "buttonClick(${leson.level_no})" class="btn btn-outline btn-primary lesson-btn">
         <i class="fa-solid fa-book-open-reader"></i> Lesson-${leson.level_no}</button>
 
         `
