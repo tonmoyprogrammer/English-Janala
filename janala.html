@@ -14,8 +14,6 @@
  integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- Google font link -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,
@@ -108,6 +106,9 @@ rel="stylesheet">
 
                  </div>
      </section>
+     <section id="spinner" class="flex justify-center items-center py-10 hidden">
+        <span class="loading loading-bars loading-xl"></span>
+     </section>
 
      <section id="word-container" class="bg-gray-100 mx-auto w-11/12 p-7 my-10 grid grid-cols-3 gap-6">
           <div class="word-child-container text-center bg-slate-200 col-span-full py-10 space-y-4 font-bangla rounded-lg shadow-sm">
@@ -118,22 +119,24 @@ rel="stylesheet">
         </div>
      </section>
 
-
-
-     <!-- Open the modal using ID.showModal() method -->
+<!-- Open the modal using ID.showModal() method -->
 <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
 <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
+
+  <div id="load-data" class="space-y-5">                                                                                                                                               
+  </div>
+  
+    <div class="modal-action">          
       <form method="dialog">
-        <!-- if there is a button in form, it will close the modal - -->
-         <button class="btn">Close</button>
-      </form>
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>                                                    
     </div>
   </div>
 </dialog>
-     <script src="janala.js"></script>
+
+
+  <script src="janala.js"></script>
 </body>
 </html>
