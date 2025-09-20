@@ -35,6 +35,13 @@ const manageSpinner = (status)=>
 
 
 }
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
 function buttonClick(id)
 {
    
@@ -126,7 +133,7 @@ const getWord = (word)=>
 
             <div class="flex justify-between m-5">
                 <buttion  onclick="loadDataDetails(${element.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80] "><i class="fa-solid fa-circle-info"></i></buttion>
-                <buttion  class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></buttion>
+                <buttion  onclick="pronounceWord('${element.word}')" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-solid fa-volume-high"></i></buttion>
             </div>
             </div>
 
@@ -160,3 +167,26 @@ const getLesson = (lesson)=>
 }
 
 learnLesson();
+
+document.getElementById("button-search").addEventListener("click",()=>
+{
+    const input = document.getElementById("input-search");
+    const lala = input.value.trim().toLowerCase();
+    
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then(res =>res.json())
+    .then((data)=>
+    {
+        const dataLoad = data.data;
+        const getData = dataLoad.filter((word) =>
+        {
+            word.word.toLowerCase().includes(lala);
+
+        }
+        );
+        getDataDetails(getData);
+
+        
+    })      
+    
+})
